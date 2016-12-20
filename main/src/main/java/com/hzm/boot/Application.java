@@ -1,6 +1,7 @@
 package com.hzm.boot;
 
 import com.hzm.boot.config.JerseyConfig;
+import org.apache.catalina.valves.AccessLogValve;
 import org.glassfish.jersey.servlet.ServletContainer;
 import org.glassfish.jersey.servlet.ServletProperties;
 import org.slf4j.Logger;
@@ -10,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
+import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -28,7 +30,7 @@ public class Application implements EmbeddedServletContainerCustomizer {
     }
 
     @Override
-    public void customize(ConfigurableEmbeddedServletContainer config) {
+    public void customize(ConfigurableEmbeddedServletContainer container) {
         //test11
         //test22
         //test33
@@ -36,6 +38,14 @@ public class Application implements EmbeddedServletContainerCustomizer {
         //test55
         //test66
         //test77
+        customizeAccessLog((TomcatEmbeddedServletContainerFactory) container);
+    }
+
+    private void customizeAccessLog(TomcatEmbeddedServletContainerFactory factory) {
+        AccessLogValve valve = new AccessLogValve();
+        valve.setPattern("%h %l %u %t  %r %s %b %D");
+        valve.setDirectory("/");
+        factory.addContextValves(valve);
     }
 
     @Bean
