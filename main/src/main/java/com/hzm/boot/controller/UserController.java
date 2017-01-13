@@ -1,5 +1,8 @@
 package com.hzm.boot.controller;
 
+import com.dianping.cat.Cat;
+import com.dianping.cat.message.Event;
+import com.dianping.cat.message.Transaction;
 import com.hzm.boot.domain.User;
 import com.hzm.boot.service.UserService;
 import io.swagger.annotations.*;
@@ -31,8 +34,6 @@ public class UserController {
     @RequestMapping(value = "/getUser",method = RequestMethod.GET)
     public User getUser(@RequestParam int userId, HttpServletRequest request){
         System.out.println("UserId:"+userId);
-        
-        request.getSession().setAttribute("hello", "hello world");
         return userService.getUser(userId);
     }
 

@@ -1,5 +1,6 @@
 package com.hzm.boot.config;
 
+import com.hzm.boot.interceptor.CatInterceptor;
 import com.hzm.boot.interceptor.MyInterceptor1;
 import com.hzm.boot.interceptor.MyInterceptor2;
 import com.hzm.boot.interceptor.SessionInterceptor;
@@ -20,6 +21,7 @@ public class MyWebAppConfigurer extends WebMvcConfigurerAdapter {
         // excludePathPatterns 用户排除拦截
         registry.addInterceptor(new MyInterceptor1()).addPathPatterns("/**");
         registry.addInterceptor(new MyInterceptor2()).addPathPatterns("/**");
+        //registry.addInterceptor(new CatInterceptor()).addPathPatterns("/**");
         registry.addInterceptor(new SessionInterceptor()).addPathPatterns("/**");
         super.addInterceptors(registry);
     }
