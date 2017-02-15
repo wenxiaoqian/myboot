@@ -16,6 +16,10 @@
         <!-- encoder is required -->
         <encoder class="net.logstash.logback.encoder.LogstashEncoder" />
     </appender>
+
+    <appender name="catAppender" class="com.hzm.boot.logback.CatLogbackAppender">
+
+    </appender>
     <!--
     <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${log.path}</file>
@@ -31,7 +35,9 @@
 
     <root level="info">
         <appender-ref ref="console" />
+        <appender-ref ref="catAppender"/>
         <appender-ref ref="logstash" />
+
         <!--
         <appender-ref ref="file" />-->
     </root>

@@ -2,6 +2,8 @@ package com.hzm.boot.config;
 
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
+import com.hzm.boot.interceptor.CatMybatisPlugins;
+import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
@@ -16,6 +18,8 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 @Configuration
@@ -64,6 +68,8 @@ public class MyBatisConfig implements EnvironmentAware{
         sessionFactory.setTypeAliasesPackage(env.getProperty("mybatis.typeAliases.package"));
         sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver()
                                 .getResources(env.getProperty("mybatis.mapper.locations")));
+
+        sessionFactory.setPlugins(new CatMybatisPlugins[]{});
         return sessionFactory.getObject();
     }
 

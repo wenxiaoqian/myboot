@@ -23,7 +23,7 @@ public class CatConfig {
     @Bean
     public FilterRegistrationBean registCatFilter() {
 
-        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new WebStatFilter());
+        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
 
         //添加过滤规则.
         filterRegistrationBean.addUrlPatterns("/*");

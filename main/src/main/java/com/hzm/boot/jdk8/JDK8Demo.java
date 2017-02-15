@@ -12,7 +12,7 @@ import java.util.stream.Stream;
  **/
 public class JDK8Demo {
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
         Arrays.asList("aa", "bb", "cc", "dd", "ee").forEach(e -> {
             System.out.println(e);
         });

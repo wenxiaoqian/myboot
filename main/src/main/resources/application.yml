@@ -16,7 +16,7 @@ spring:
             port: 27017
 
 server:
-    port: 9090
+    port: 8090
 
 #user info
 user:
